@@ -1,0 +1,255 @@
+{% extends "template.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Candidate Profile Modal</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Bỏ viền cho .form-control.border-0 và .form-select.border-0 */
+    .form-control.border-0,
+    .form-select.border-0 {
+      border: none !important;
+      box-shadow: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn bg-gradient-primary btn-block" data-bs-toggle="modal" data-bs-target="#modalAddCV">
+    Add CV
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalAddCV" tabindex="-1" role="dialog" aria-labelledby="modalAddCVTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-normal" id="modalAddCVTitle">Add Candidate Profile</h5>
+          <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <form role="form" id="candidateForm">
+            <div class="row">
+              <!-- PERSONAL INFORMATION -->
+              <div class="col-12 mb-2">
+                <h6 class="text-uppercase text-xs font-weight-bolder opacity-8">Personal Information</h6>
+                <hr class="mt-0 mb-2">
+              </div>
+              
+              <!-- Left Column -->
+              <div class="col-md-6">
+                <!-- Full Name (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <input type="text" class="form-control" id="name" name="name" required placeholder="Full Name">
+                </div>
+                
+                <!-- Date of Birth (bỏ border) -->
+                <div class="mb-3">
+                  <label for="dob" class="form-label">Date of Birth</label>
+                  <input 
+                    type="date" 
+                    class="form-control border-0" 
+                    id="dob" 
+                    name="dob" 
+                    required
+                  >
+                </div>
+                
+                <!-- Gender (bỏ border) -->
+                <div class="mb-3">
+                  <label for="gender" class="form-label">Gender</label>
+                  <select 
+                    id="gender" 
+                    name="gender" 
+                    class="form-select border-0" 
+                    required
+                  >
+                    <option value="" disabled selected>Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Right Column -->
+              <div class="col-md-6">
+                <!-- Email (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <input type="email" class="form-control" id="email" name="email" required placeholder="Email">
+                </div>
+                
+                <!-- Phone Number (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <input type="tel" class="form-control" id="phone" name="phone" required placeholder="Phone Number">
+                </div>
+                
+                <!-- ID Card Number (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <input type="text" class="form-control" id="identityCard" name="identityCard" required placeholder="ID Card Number">
+                </div>
+              </div>
+              
+              <!-- PROFESSIONAL INFORMATION -->
+              <div class="col-12 mt-2 mb-2">
+                <h6 class="text-uppercase text-xs font-weight-bolder opacity-8">Professional Information</h6>
+                <hr class="mt-0 mb-2">
+              </div>
+              
+              <!-- Left Column -->
+              <div class="col-md-6">
+                <!-- Work Experience (bỏ border) -->
+                <div class="mb-3">
+                  <label for="workExperience" class="form-label">Work Experience</label>
+                  <select 
+                    id="workExperience" 
+                    name="workExperience" 
+                    class="form-select border-0" 
+                    required
+                  >
+                    <option value="" disabled selected>Select experience level</option>
+                    <option value="intern">Intern</option>
+                    <option value="fresher">Fresher</option>
+                    <option value="junior">Junior</option>
+                    <option value="midlevel">Mid-level</option>
+                    <option value="senior">Senior</option>
+                  </select>
+                </div>
+                
+                <!-- Education (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <input type="text" class="form-control" id="education" name="education" required placeholder="Education">
+                </div>
+                
+                <!-- Position Applied For (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <input type="text" class="form-control" id="position" name="position" required placeholder="Position Applied For">
+                </div>
+                
+                <!-- Status (bỏ border) -->
+                <div class="mb-3">
+                  <label for="status" class="form-label">Status</label>
+                  <select 
+                    id="status" 
+                    name="status" 
+                    class="form-select border-0"
+                  >
+                    <option value="pending" selected>Pending</option>
+                    <option value="interviewed">Interviewed</option>
+                    <option value="hired">Hired</option>
+                    <option value="rejected">Rejected</option>
+                  </select>
+                </div>
+              </div>
+              
+              <!-- Right Column -->
+              <div class="col-md-6">
+                <!-- Candidate Description (giữ nguyên border) -->
+                <div class="input-group input-group-outline mb-3">
+                  <textarea class="form-control" id="description" name="description" rows="5" placeholder="Candidate Description"></textarea>
+                </div>
+              </div>
+              
+              <!-- DOCUMENTS -->
+              <div class="col-12 mt-2 mb-2">
+                <h6 class="text-uppercase text-xs font-weight-bolder opacity-8">Documents</h6>
+                <hr class="mt-0 mb-2">
+              </div>
+              
+              <!-- Left Column: Profile Photo -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="avatarPath" class="form-label">Profile Photo</label>
+                  <input 
+                    type="file" 
+                    class="form-control" 
+                    id="avatarPath" 
+                    name="avatarPath" 
+                    accept="image/*"
+                  >
+                  <small class="text-muted mt-2">Supported formats: JPG, PNG. Max size: 2MB</small>
+                </div>
+              </div>
+              
+              <!-- Right Column: Upload CV -->
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="cvPath" class="form-label">Upload CV</label>
+                  <input 
+                    type="file" 
+                    class="form-control" 
+                    id="cvPath" 
+                    name="cvPath" 
+                    accept=".pdf,.doc,.docx,.jpg,.png" 
+                    required
+                  >
+                  <small class="text-muted mt-2">
+                    Supported formats: PDF, DOC, DOCX, JPG, PNG. Max size: 5MB
+                  </small>
+                </div>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+        
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn bg-gradient-primary" id="submitCandidate">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS (bao gồm Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Submit form
+    document.getElementById('submitCandidate').addEventListener('click', function() {
+      const form = document.getElementById('candidateForm');
+      
+      // Validate form
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      
+      // Create FormData object
+      const formData = new FormData(form);
+      
+      fetch('/api/candidates', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        alert('Candidate information saved successfully!');
+        var modal = bootstrap.Modal.getInstance(document.getElementById('modalAddCV'));
+        modal.hide();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while saving the candidate information.');
+      });
+    });
+  </script>
+</body>
+</html>
+{% endblock %}

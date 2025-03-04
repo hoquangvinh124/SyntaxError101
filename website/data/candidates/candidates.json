@@ -1,0 +1,19 @@
+[
+    {
+        "candidate_id": "25df9671-9add-4a2b-88e5-7ea1c1826e44",
+        "name": "Hồ Quang Vinh",
+        "dob": "2005-12-11",
+        "gender": "male",
+        "email": "vinhhq234112e@st.uel.edu.vn",
+        "phone": "0919691057",
+        "identity_card": "14578963254",
+        "work_experience": "senior",
+        "education": "Trường ĐH Kinh tế-Luật VNUHCM",
+        "description": "Ứng cử viên tiềm năng cho vị trí của công ty TNHH",
+        "created_date": "03-03-2025 00:49:15",
+        "position": "Data Engineer",
+        "cv_path": "/static/cv/3828794ad8ad67f33ebc.jpg",
+        "avatar_path": "/static/avt-images/3828794ad8ad67f33ebc.jpg",
+        "status": "interviewed"
+    }
+]
