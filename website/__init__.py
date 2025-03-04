@@ -7,7 +7,10 @@ def create_app():
 
     from .views import views
     from .auth import auth
-    from .email_service import email_service
+    from .email_service import email_service, create_email_blueprint  # import thêm hàm create_email_blueprint
+
+    # Khởi tạo Flask-Mail thông qua hàm create_email_blueprint
+    create_email_blueprint(app)
 
     # Register Blueprints
     app.register_blueprint(views, url_prefix='/')
@@ -15,4 +18,3 @@ def create_app():
     app.register_blueprint(email_service, url_prefix='/email/')
 
     return app
-

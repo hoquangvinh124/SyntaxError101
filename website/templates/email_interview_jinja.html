@@ -1,0 +1,30 @@
+{% extends "untitled.html" %}
+
+{% block interview_mail %}
+<!-- Logo Placeholder -->
+<div class="logo">
+  <img src="https://via.placeholder.com/150x50?text=Your+Logo" alt="Company Logo">
+</div>
+
+<div class="header">Interview Invitation</div>
+
+<div class="content">
+  <p>Dear <strong>{{ name }}</strong>,</p>
+  <p>Thank you for applying for the <strong>{{ position }}</strong> position at the company! We were very impressed with your profile and would love the opportunity to meet and learn more about you.</p>
+
+  <div class="info">
+    <p>📅 <strong>Date & Time:</strong> {{ date }}</p>
+    <p>📍 <strong>Location:</strong> Company's headquarters</p>
+    <p>👨‍💼 <strong>Interviewer:</strong> HR Manager</p>
+  </div>
+
+  <p>This conversation will help us get to know you better and will also be a great opportunity for you to ask questions about our company and the role.</p>
+
+  <p>If you have any questions, feel free to contact us by replying <strong>this email</strong>.</p>
+
+  <a href="mailto:congtytnhhminhtao@gmail.com" class="button">Confirm Attendance</a>
+
+  <p class="footer">Looking forward to meeting you soon! 😊</p>
+  <p class="footer"><strong>Best regards,</strong><br>
+  HR Manager</p>
+  {% endblock %}

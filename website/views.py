@@ -5,6 +5,7 @@ from .utils.JsonCRUD import JsonCRUD
 from .utils.class_info.Candidate import Candidate
 from datetime import datetime
 from .utils.SearchCandidate import search_candidates
+from .email_service import send_email
 
 
 views = Blueprint('views', __name__)
@@ -106,6 +107,7 @@ def update_candidate(candidate_id):
     position = request.form.get('position')
     status = request.form.get('status').lower()
     description = request.form.get('description')
+    action = request.form.get('action')
 
     # Lấy file từ form
     avatar_file = request.files.get('profile-pic-upload')  # input name="avatarPath"
@@ -114,6 +116,10 @@ def update_candidate(candidate_id):
     # Xác định thư mục lưu file, sử dụng current_app.root_path để lấy đường dẫn gốc của ứng dụng
     avatar_dir = os.path.join(current_app.root_path, 'static', 'avt-images')
     cv_dir = os.path.join(current_app.root_path, 'static', 'cv')
+
+    print(action)
+    if action == 'interview':
+        send_email()
 
 
     avatar_path = None
