@@ -1,0 +1,35 @@
+{% extends "email_template.html" %}
+
+{% block interview_mail %}
+<!-- Logo Placeholder -->
+<div class="logo">
+  <img src="https://i.imgur.com/g1MY4eI.png" alt="Company Logo">
+</div>
+
+<div class="header"> You Did It! Welcome to the Team! </div>
+
+<div class="content">
+  <p>Dear <strong>{{ name }}</strong>,</p>
+
+  <p>We have some <strong>fantastic news</strong> for you—<strong>You're officially hired!</strong></p>
+
+  <p>After reviewing numerous applications, conducting interviews, and having thoughtful discussions, it became <strong>crystal clear</strong> that you are the <strong>perfect fit</strong> for the <strong>{{ position }}</strong> role at our company.</p>
+
+  <p>Your skills, passion, and potential truly stood out, and we <strong>can't wait</strong> to have you on board!</p>
+
+  <div class="info">
+    <p>📅 <strong>Start Date:</strong> {{ start_date }}</p>
+    <p>📍 <strong>Work Location:</strong> Company's headquarters</p>
+    <p>💰 <strong>Salary & Benefits:</strong> Details will be shared in your official offer letter.</p>
+  </div>
+
+  <p>Attached is your <strong>official offer letter</strong>, which contains all the details you need. Please review it and confirm your acceptance <strong>as soon as possible</strong> so we can start preparing for your onboarding!</p>
+
+  <a href="mailto:congtytnhhminhtao@gmail.com" class="button">🎯 Accept the Offer</a>
+
+  <p class="footer">Once again, <strong>congratulations!</strong> We're beyond excited to have you join us and can't wait to see the amazing things we'll achieve together! 💪</p>
+
+  <p class="footer"><strong>Best regards,</strong><br>
+  HR Manager</p>
+</div>
+{% endblock %}

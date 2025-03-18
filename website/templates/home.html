@@ -1,6 +1,224 @@
 {% extends "dashboard.html" %}
 
-{% block content %} 
-    <h4 class="mb-0 text-success">{{ candidate }}</h4>
+{% block pending %} 
+    <h4 class="mb-0 text-">{{ pending }}</h4>
 {% endblock %}
 
+{% block interviewed %}<h4 class="mb-0">{{ interviewed }}</h4>{% endblock %}
+
+{% block hired %}<h4 class="mb-0">{{ hired }}</h4>{% endblock %}
+
+{% block rejected %}<h4 class="mb-0">{{ rejected }}</h4>{% endblock %}
+
+{% block chart %}
+<script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+
+    var status_label = JSON.parse('{{ candidate_label | tojson | safe }}');
+    var status_data = JSON.parse('{{ candidate_status | tojson | safe }}');
+
+    new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: status_label,
+            datasets: [{
+                label: "Status",
+                tension: 0.4,
+                borderWidth: 0,
+                borderRadius: 4,
+                borderSkipped: false,
+                backgroundColor: [
+                    '#50c878', // Pending
+                    '#ff6384', // Interviewed
+                    '#36a2eb', // Hired
+                    '#ff9f40'  // Rejected
+                ],
+                data: status_data,
+                barThickness: 'flex'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: false // Ẩn title (tắt hoàn toàn)
+                },
+                legend: {
+                    display: true, // Hiển thị chú thích (nếu cần)
+                    position: 'right',
+                    labels: {
+                        font: {
+                            size: 14
+                        },
+                        boxWidth: 20,
+                        padding: 15,
+                        color: "#333"
+                    }
+                }
+            },
+            interaction: {
+                intersect: true,
+                mode: 'nearest',
+            }
+        }
+    });
+    
+    
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+    var count_cv_per_month = JSON.parse('{{ cv_created_per_month | tojson | safe }}');
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"],
+        datasets: [{
+          label: "CVs",
+          tension: 0,
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: "#ff7e33",
+          pointBorderColor: "transparent",
+          borderColor: "#ff7e33",
+          backgroundColor: "transparent",
+          fill: true,
+          data: count_cv_per_month,
+          maxBarThickness: 6
+
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            callbacks: {
+              title: function(context) {
+                const fullMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                return fullMonths[context[0].dataIndex];
+              }
+            }
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [4, 4],
+              color: '#e5e5e5'
+            },
+            ticks: {
+              display: true,
+              color: '#737373',
+              padding: 10,
+              font: {
+                size: 12,
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#737373',
+              padding: 10,
+              font: {
+                size: 12,
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+
+    var ctx3 = document.getElementById("chart-line-tasks").getContext("2d");
+    var gender_label = JSON.parse('{{ gender_label | tojson | safe }}');
+    var count_cv_per_gender = JSON.parse('{{ cv_created_per_gender | tojson | safe }}');
+    new Chart(ctx3, {
+      type: "bar", // Đổi thành bar-chart
+      data: {
+        labels: gender_label, // Đổi nhãn thành Male, Female, Other
+        datasets: [{
+          label: "Tasks",
+          borderWidth: 2,
+          backgroundColor: ["#3498db", "#e74c3c", "#9b59b6"], // Màu cột tương ứng
+          borderColor: ["#2980b9", "#c0392b", "#8e44ad"], // Viền cột tương ứng
+          data: count_cv_per_gender, // Thay đổi dữ liệu thành theo giới tính
+          maxBarThickness: 20 // Độ dày tối đa của cột
+        }],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [4, 4],
+              color: '#e5e5e5'
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#737373',
+              font: {
+                size: 14,
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [4, 4]
+            },
+            ticks: {
+              display: true,
+              color: '#737373',
+              padding: 10,
+              font: {
+                size: 14,
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+    
+  </script>
+{% endblock %}

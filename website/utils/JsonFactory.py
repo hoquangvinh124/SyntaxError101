@@ -62,12 +62,9 @@ class JsonFileFactory:
         obj = ClassName.__new__(ClassName)  # Tạo instance rỗng của ClassName
         for key, value in data.items():
             attr_type = getattr(ClassName, key, None)
-            if isinstance(attr_type, Enum):  # Xử lý Enum
-                setattr(obj, key, attr_type.__class__(value))
-            elif isinstance(attr_type, datetime.date):  # Xử lý datetime
-                setattr(obj, key, datetime.datetime.strptime(value, "%d-%m-%Y").date())
-            elif isinstance(attr_type, uuid.UUID):  # Xử lý UUID
+    
+            if isinstance(attr_type, uuid.UUID):  # Xử lý UUID
                 setattr(obj, key, uuid.UUID(value))
-            else:  # Gán giá trị thông thường
+            else:
                 setattr(obj, key, value)
         return obj

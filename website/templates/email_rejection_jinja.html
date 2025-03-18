@@ -1,0 +1,25 @@
+{% extends "email_template.html" %}
+
+{% block interview_mail %}
+<!-- Logo Placeholder -->
+<div class="logo">
+  <img src="https://i.imgur.com/g1MY4eI.png" alt="Company Logo">
+</div>
+
+<div class="header">Update on Your Application for {{ position }}</div>
+
+<div class="content">
+  <p>Dear <strong>{{ name }}</strong>,</p>
+
+  <p>We appreciate your time and effort in applying for the <strong>{{ position }}</strong> position at our company. It was a pleasure getting to know you during the process.</p>
+
+  <p>After careful consideration, we have decided to move forward on this journey without you. This decision was not an easy one, as we had many strong applicants, including yourself.</p>
+
+  <p>While this may not be the outcome you were hoping for, we truly value your interest in our company. We encourage you to stay connected and explore future opportunities with us.</p>
+
+  <p>We wish you the very best in your career ahead.</p>
+
+  <p class="footer"><strong>Best regards,</strong><br>
+  HR Manager</p>
+</div>
+{% endblock %}

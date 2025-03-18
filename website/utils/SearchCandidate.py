@@ -2,7 +2,7 @@ import datetime
 from .JsonFactory import JsonFileFactory
 from .class_info.Candidate import Candidate
 
-def search_candidates(filename, search_name=None, search_experience=None):
+def search_candidates(filename, search_name=None, search_status=None):
     """
     Tìm kiếm ứng viên theo tên và kinh nghiệm, sau đó sắp xếp theo created_date mới nhất.
     
@@ -19,8 +19,8 @@ def search_candidates(filename, search_name=None, search_experience=None):
         candidates = [c for c in candidates if search_name.lower() in c.name.lower()]
     
     # Lọc theo kinh nghiệm nếu được cung cấp
-    if search_experience:
-        candidates = [c for c in candidates if search_experience.lower() == c.work_experience.lower()]
+    if search_status:
+        candidates = [c for c in candidates if search_status.lower() == c.status.lower()]
     
     # Sắp xếp danh sách theo created_date (mới nhất trước)
     # Chuyển đổi created_date từ chuỗi sang datetime theo định dạng "dd-mm-YYYY HH:MM:SS"

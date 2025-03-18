@@ -1,23 +1,23 @@
 from flask import Blueprint, render_template, request, flash
+from werkzeug.security import check_password_hash
 
 auth = Blueprint('auth', __name__) 
 
-@auth.route('/login', methods=['GET', 'POST'])
+@auth.route('/verifylogin', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get('username')
+        email = request.form.get('email')
         password = request.form.get('password')
-        print(username, password)
+        
+        user = User.query.filter_by(username=username).first()
+        
+        if user and check_password_hash(user.password, password):
+            login_user(user)
+            flash('Login successful!', 'success')
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Invalid credentials.', 'danger')
+    
+    return render_template('login.html')
 
-        if username != 'syntaxerror101' or password != '12345678':
-            flash('Invalid credentials. Please try again.', category='error')
-
-    return render_template("login.html")
-
-@auth.route('/logout')
-def logout():
-    return 'Logout'
-
-@auth.route('/sign-up')
-def sign_up():
-    return 'Sign Up'
+        

@@ -59,7 +59,7 @@
       
       <!-- Search Input -->
       <div class="col-5 ps-4 pe-3 pt-2">
-      <form action="{{ url_for('views.tables') }}" method="get">  
+      <form action="{{ url_for('views.query_candidate') }}" method="get">  
         <div class="input-group">
           <input 
             type="text" 
@@ -77,12 +77,11 @@
       <!-- Experience Filter -->
       <div class="col-2 pe-3">
         <select class="form-select custom-padding" id="experienceFilter" name="experiencefilter">
-          <option value="" selected>All Experience</option>
-          <option value="0-1">Under 1 year</option>
-          <option value="1-2">1-2 years</option>
-          <option value="2-3">2-3 years</option>
-          <option value="3-5">3-5 years</option>
-          <option value="5+">Over 5 years</option>
+          <option value="" selected>Status</option>
+          <option value="pending">Pending</option>
+          <option value="interviewed">Interviewed</option>
+          <option value="hired">Hired</option>
+          <option value="rejected">Rejected</option>
         </select>
       </div>
   
@@ -134,7 +133,7 @@
         
         <!-- Modal Body -->
         <div class="modal-body">
-          <form role="form" id="candidateForm" action="/api/candidates" method="POST" enctype="multipart/form-data">
+          <form role="form" id="candidateForm" action="/createcandidate" method="POST" enctype="multipart/form-data">
             <div class="row">
               <!-- PERSONAL INFORMATION -->
               <div class="col-12 mb-2">
